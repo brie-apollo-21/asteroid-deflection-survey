@@ -1,0 +1,225 @@
+%General Mission Analysis Tool(GMAT) Script
+%Created: 2024-10-19 00:04:36
+
+
+%----------------------------------------
+%---------- Spacecraft
+%----------------------------------------
+
+Create Spacecraft Asteroid;
+GMAT Asteroid.DateFormat = TDBGregorian;
+GMAT Asteroid.Epoch = '01 Jan 2018 00:00:00.000';
+GMAT Asteroid.CoordinateSystem = EarthMJ2000Eq;
+GMAT Asteroid.DisplayStateType = Cartesian;
+GMAT Asteroid.X = 0;
+GMAT Asteroid.Y = 0;
+GMAT Asteroid.Z = 0;
+GMAT Asteroid.VX = 0;
+GMAT Asteroid.VY = 0;
+GMAT Asteroid.VZ = 0;
+GMAT Asteroid.DryMass = 850;
+GMAT Asteroid.Cd = 2.2;
+GMAT Asteroid.Cr = 1.8;
+GMAT Asteroid.DragArea = 15;
+GMAT Asteroid.SRPArea = 1;
+GMAT Asteroid.SPADDragScaleFactor = 1;
+GMAT Asteroid.SPADSRPScaleFactor = 1;
+GMAT Asteroid.AtmosDensityScaleFactor = 1;
+GMAT Asteroid.ExtendedMassPropertiesModel = 'None';
+GMAT Asteroid.NAIFId = -937001;
+GMAT Asteroid.NAIFIdReferenceFrame = -9009001;
+GMAT Asteroid.OrbitSpiceKernelName = {'C:\Users\natalius\Documents\PDC_SPKs\2017_PDC-merged-DE431.bsp'};
+GMAT Asteroid.OrbitColor = Red;
+GMAT Asteroid.TargetColor = Teal;
+GMAT Asteroid.OrbitErrorCovariance = [ 1e+70 0 0 0 0 0 ; 0 1e+70 0 0 0 0 ; 0 0 1e+70 0 0 0 ; 0 0 0 1e+70 0 0 ; 0 0 0 0 1e+70 0 ; 0 0 0 0 0 1e+70 ];
+GMAT Asteroid.CdSigma = 1e+70;
+GMAT Asteroid.CrSigma = 1e+70;
+GMAT Asteroid.Id = 'SatId';
+GMAT Asteroid.Attitude = CoordinateSystemFixed;
+GMAT Asteroid.SPADSRPInterpolationMethod = Bilinear;
+GMAT Asteroid.SPADSRPScaleFactorSigma = 1e+70;
+GMAT Asteroid.SPADDragInterpolationMethod = Bilinear;
+GMAT Asteroid.SPADDragScaleFactorSigma = 1e+70;
+GMAT Asteroid.AtmosDensityScaleFactorSigma = 1e+70;
+GMAT Asteroid.ModelFile = 'aura.3ds';
+GMAT Asteroid.ModelOffsetX = 0;
+GMAT Asteroid.ModelOffsetY = 0;
+GMAT Asteroid.ModelOffsetZ = 0;
+GMAT Asteroid.ModelRotationX = 0;
+GMAT Asteroid.ModelRotationY = 0;
+GMAT Asteroid.ModelRotationZ = 0;
+GMAT Asteroid.ModelScale = 1;
+GMAT Asteroid.AttitudeDisplayStateType = 'Quaternion';
+GMAT Asteroid.AttitudeRateDisplayStateType = 'AngularVelocity';
+GMAT Asteroid.AttitudeCoordinateSystem = EarthMJ2000Eq;
+GMAT Asteroid.EulerAngleSequence = '321';
+
+%----------------------------------------
+%---------- ForceModels
+%----------------------------------------
+
+Create ForceModel spkProp_ForceModel;
+GMAT spkProp_ForceModel.CentralBody = Earth;
+GMAT spkProp_ForceModel.PrimaryBodies = {Earth};
+GMAT spkProp_ForceModel.Drag = None;
+GMAT spkProp_ForceModel.SRP = Off;
+GMAT spkProp_ForceModel.RelativisticCorrection = Off;
+GMAT spkProp_ForceModel.ErrorControl = RSSStep;
+GMAT spkProp_ForceModel.GravityField.Earth.Degree = 4;
+GMAT spkProp_ForceModel.GravityField.Earth.Order = 4;
+GMAT spkProp_ForceModel.GravityField.Earth.StmLimit = 100;
+GMAT spkProp_ForceModel.GravityField.Earth.PotentialFile = 'JGM2.cof';
+GMAT spkProp_ForceModel.GravityField.Earth.TideModel = 'None';
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%----------------------------------------
+%---------- ForceModels
+%----------------------------------------
+
+Create ForceModel DeepSpaceProp_ForceModel;
+GMAT DeepSpaceProp_ForceModel.CentralBody = Sun;
+GMAT DeepSpaceProp_ForceModel.PointMasses = {Earth, Jupiter, Luna, Mars, Mercury, Neptune, Saturn, Sun, Uranus, Venus};
+GMAT DeepSpaceProp_ForceModel.Drag = None;
+GMAT DeepSpaceProp_ForceModel.SRP = Off;
+GMAT DeepSpaceProp_ForceModel.RelativisticCorrection = Off;
+GMAT DeepSpaceProp_ForceModel.ErrorControl = RSSStep;
+
+Create ForceModel EarthProp_ForceModel;
+GMAT EarthProp_ForceModel.CentralBody = Earth;
+GMAT EarthProp_ForceModel.PrimaryBodies = {Earth};
+GMAT EarthProp_ForceModel.PointMasses = {Luna, Sun};
+GMAT EarthProp_ForceModel.Drag = None;
+GMAT EarthProp_ForceModel.SRP = Off;
+GMAT EarthProp_ForceModel.RelativisticCorrection = Off;
+GMAT EarthProp_ForceModel.ErrorControl = RSSStep;
+GMAT EarthProp_ForceModel.GravityField.Earth.Degree = 8;
+GMAT EarthProp_ForceModel.GravityField.Earth.Order = 8;
+GMAT EarthProp_ForceModel.GravityField.Earth.StmLimit = 100;
+GMAT EarthProp_ForceModel.GravityField.Earth.PotentialFile = 'JGM2.cof';
+GMAT EarthProp_ForceModel.GravityField.Earth.TideModel = 'None';
+
+%----------------------------------------
+%---------- Propagators
+%----------------------------------------
+
+Create Propagator DeepSpaceProp;
+GMAT DeepSpaceProp.FM = DeepSpaceProp_ForceModel;
+GMAT DeepSpaceProp.Type = PrinceDormand78;
+GMAT DeepSpaceProp.InitialStepSize = 600;
+GMAT DeepSpaceProp.Accuracy = 1e-10;
+GMAT DeepSpaceProp.MinStep = 0;
+GMAT DeepSpaceProp.MaxStep = 864000;
+GMAT DeepSpaceProp.MaxStepAttempts = 50;
+GMAT DeepSpaceProp.StopIfAccuracyIsViolated = true;
+
+Create Propagator spkProp;
+GMAT spkProp.Type = SPK;
+GMAT spkProp.StepSize = 1;
+GMAT spkProp.CentralBody = Earth;
+GMAT spkProp.EpochFormat = 'TDBGregorian';
+GMAT spkProp.StartEpoch = 'FromSpacecraft';
+
+Create Propagator EarthProp;
+GMAT EarthProp.FM = EarthProp_ForceModel;
+GMAT EarthProp.Type = RungeKutta89;
+GMAT EarthProp.InitialStepSize = 600;
+GMAT EarthProp.Accuracy = 1e-13;
+GMAT EarthProp.MinStep = 0;
+GMAT EarthProp.MaxStep = 600;
+GMAT EarthProp.MaxStepAttempts = 50;
+GMAT EarthProp.StopIfAccuracyIsViolated = true;
+
+%----------------------------------------
+%---------- Burns
+%----------------------------------------
+
+Create ImpulsiveBurn Deflection;
+GMAT Deflection.CoordinateSystem = SunICRF;
+GMAT Deflection.Element1 = 3e-05;
+GMAT Deflection.Element2 = 0;
+GMAT Deflection.Element3 = 0;
+GMAT Deflection.DecrementMass = false;
+GMAT Deflection.Isp = 300;
+GMAT Deflection.GravitationalAccel = 9.81;
+
+%----------------------------------------
+%---------- Coordinate Systems
+%----------------------------------------
+
+Create CoordinateSystem SunInertial;
+GMAT SunInertial.Origin = Sun;
+GMAT SunInertial.Axes = BodyInertial;
+
+Create CoordinateSystem ICRF;
+GMAT ICRF.Origin = SolarSystemBarycenter;
+GMAT ICRF.Axes = ICRF;
+
+Create CoordinateSystem SunICRF;
+GMAT SunICRF.Origin = Sun;
+GMAT SunICRF.Axes = ICRF;
+
+Create CoordinateSystem AsteroidFixed;
+GMAT AsteroidFixed.Origin = Asteroid;
+GMAT AsteroidFixed.Axes = BodyFixed;
+
+%----------------------------------------
+%---------- Subscribers
+%----------------------------------------
+
+
+%----------------------------------------
+%---------- Arrays, Variables, Strings
+%----------------------------------------
+Create Variable EarthRMAG EarthAltitude ElapsedSecs;
+GMAT EarthRMAG = -1;
+GMAT EarthAltitude = -1;
+GMAT ElapsedSecs = 0;
+
+
+
+
+
+
+
+
+
+
+
+
+
+%----------------------------------------
+%---------- Mission Sequence
+%----------------------------------------
+
+BeginMissionSequence;
+PenUp 'GroundPlotPenUp' DefaultGroundTrackPlot;
+Propagate 'LoadEphem' spkProp(Asteroid) {Asteroid.ElapsedSecs = 0};
+Maneuver 'Deflection' Deflection(Asteroid);
+If 'StartDeepSpace' Asteroid.Earth.RMAG > 924000
+   Propagate 'DeepSpaceProp' DeepSpaceProp(Asteroid) {Asteroid.Earth.RMAG = 924000};
+   PenDown 'GroundPlotPenDown' DefaultGroundTrackPlot;
+   Propagate 'Impact/Peri_Prop' EarthProp(Asteroid) {Asteroid.Earth.Altitude = 0.0, Asteroid.Earth.Periapsis};
+Else
+   PenDown 'GroundPlotPenDown' DefaultGroundTrackPlot;
+   Propagate 'Impact/Peri_Prop' EarthProp(Asteroid) {Asteroid.Earth.Altitude = 0.0, Asteroid.Earth.Periapsis};
+EndIf;
+GMAT 'SetEarthRMAG' EarthRMAG = Asteroid.Earth.RMAG;
+GMAT 'SetEarthAltitude' EarthAltitude = Asteroid.Earth.Altitude;
+GMAT 'SetElapsedSecs' ElapsedSecs = Asteroid.ElapsedSecs;

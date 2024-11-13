@@ -1,23 +1,44 @@
 [
     {
-        "name": "BENCHMARK",
-        "start": "13 Apr 2015 00:00:00.000",
-        "end": "20 Apr 2015 00:00:00.000",
-        "SPK": "2015_PDC-merged.DE430.bsp",
-        "NAIF_ID": -399050
-    },
-    {
-        "name": "PDC2015",
+        "name": "2015 PDC",
         "start": "13 Apr 2015 00:00:00.000",
         "end": "03 Sep 2022 03:52:10.194",
         "SPK": "2015_PDC-merged.DE430.bsp",
         "NAIF_ID": -399050
     },
     {
-        "name": "PDC2017",
+        "name": "2017 PDC",
         "start": "06 Mar 2017 00:00:00.000",
         "end": "21 Jul 2027 08:17:15.999",
         "SPK": "2017_PDC-merged-DE431.bsp",
         "NAIF_ID": -937001
+    },
+    {
+        "name": "2019 PDC",
+        "start": "26 Mar 2019 00:00:00.000",
+        "end": "29 Apr 2027 04:03:00.000",
+        "SPK": "2019_PDC-merged-DE431.bsp",
+        "NAIF_ID": -937001
+    },
+    {
+        "name": "2021 PDC",
+        "start": "19 Apr 2021 00:00:00.000",
+        "end": "20 Oct 2021 17:13:00.000",
+        "SPK": "2021_PDC-s11-merged-DE431.bsp",
+        "NAIF_ID": -937014
+    },
+    {
+        "name": "2023 PDC",
+        "start": "10 Jan 2023 00:00:00.000",
+        "end": "22 Oct 2036 15:03:21.999",
+        "SPK": "2023_PDC-s3-merged-DE441.bsp",
+        "NAIF_ID": -937016
+    },
+    {
+        "name": "2024 PDC25",
+        "start": "5 Jun 2024 00:00:00.000",
+        "end": "24 Apr 2041 16:16:00.000",
+        "SPK": "2024_PDC25-s1-merged-DE441.bsp",
+        "NAIF_ID": -937019
     }
 ]
