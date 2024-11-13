@@ -1,0 +1,23 @@
+[
+    {
+        "name": "BENCHMARK",
+        "start": "13 Apr 2015 00:00:00.000",
+        "end": "20 Apr 2015 00:00:00.000",
+        "SPK": "2015_PDC-merged.DE430.bsp",
+        "NAIF_ID": -399050
+    },
+    {
+        "name": "PDC2015",
+        "start": "13 Apr 2015 00:00:00.000",
+        "end": "03 Sep 2022 03:52:10.194",
+        "SPK": "2015_PDC-merged.DE430.bsp",
+        "NAIF_ID": -399050
+    },
+    {
+        "name": "PDC2017",
+        "start": "06 Mar 2017 00:00:00.000",
+        "end": "21 Jul 2027 08:17:15.999",
+        "SPK": "2017_PDC-merged-DE431.bsp",
+        "NAIF_ID": -937001
+    }
+]
