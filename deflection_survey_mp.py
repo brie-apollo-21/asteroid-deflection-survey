@@ -1,4 +1,4 @@
-from deflection_sim import run_simulation
+from propagate_deflection import *
 import json
 from dateutil.parser import *
 import dateutil.tz as tz
@@ -22,7 +22,7 @@ asteroids = json.load(asteroids_file)
 def pool_func(ra, dec, epoch, asteroid):
     # print(asteroid['name'])
     # Reset CSV
-    deflections_file = "./asteroid_data/"+asteroid['name']+"_deflection.csv"
+    deflections_file = "./output/"+asteroid['name']+"_deflection.csv"
     # f = open(deflections_file, "w")
     # f.write("TDB_Gregorian,TDB_MJD,Magnitude,RA,DEC,Earth_RMAG,Earth_Altitude")
     # f.close()
@@ -40,7 +40,7 @@ def pool_func(ra, dec, epoch, asteroid):
     # print(asteroid['name'], " ", epoch)
     # print("RA", str(ra)+"°", "    DEC", str(dec)+"°")
 
-    data = run_simulation(asteroid['SPK'], asteroid['NAIF_ID'], epoch, magnitude=magnitude, ra=ra, dec=dec)
+    data = propagate_deflection(asteroid['SPK'], asteroid['NAIF_ID'], epoch, magnitude=magnitude, ra=ra, dec=dec)
     #print(data)
 
     # if(data['EarthAltitude'] > max_deflection):

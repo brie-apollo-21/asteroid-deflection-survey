@@ -4,6 +4,13 @@ import os
 import deflection_survey, deflection_survey_mp
 
 if __name__ == '__main__':
+    
+    api_startup_file_template = open("./propagate_deflection/api_startup_file_template.txt", "r").read()
+    
+    api_startup_file = open("./propagate_deflection/api_startup_file.txt", "w")
+    api_startup_file.write(api_startup_file_template.replace(r"{curdir}", os.path.abspath(os.path.curdir)))
+    api_startup_file.close()
+
     print("Asteroid Deflection Survey\n====================")
 
     angle_resolution = input("Angle resolution (default of 5°): ")
@@ -27,9 +34,9 @@ if __name__ == '__main__':
 
     for asteroid in asteroids:
         # Reset CSV
-        if not os.path.exists("./asteroid_data"):
-            os.makedirs("./asteroid_data")
-        deflections_file = "./asteroid_data/"+asteroid['name']+"_deflection.csv"
+        if not os.path.exists("./output/"):
+            os.makedirs("./output/")
+        deflections_file = "./output/"+asteroid['name']+"_deflection.csv"
         if reset_csv_flag.lower() == "y" or len(reset_csv_flag) == 0:
             f = open(deflections_file, "w")
             f.write("TDB_Gregorian,TDB_MJD,Magnitude,RA,DEC,Earth_RMAG,Earth_Altitude")
