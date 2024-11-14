@@ -101,14 +101,14 @@ MEASUREMENT_PATH       = OUTPUT_PATH/
 #-----------------------------------------------------------
 VEHICLE_EPHEM_PATH     = OUTPUT_PATH/
 #-----------------------------------------------------------
-GMAT_INCLUDE_PATH      = ROOT_PATH/userincludes/
+#GMAT_INCLUDE_PATH      = ROOT_PATH/userincludes/
 #-----------------------------------------------------------
-GMAT_FUNCTION_PATH     = ROOT_PATH/userfunctions/gmat
+#GMAT_FUNCTION_PATH     = ROOT_PATH/userfunctions/gmat
 #-----------------------------------------------------------
-MATLAB_FUNCTION_PATH   = ROOT_PATH/matlab
-MATLAB_FUNCTION_PATH   = ROOT_PATH/userfunctions/matlab
+#MATLAB_FUNCTION_PATH   = ROOT_PATH/matlab
+#MATLAB_FUNCTION_PATH   = ROOT_PATH/userfunctions/matlab
 #-----------------------------------------------------------
-PYTHON_MODULE_PATH     = ROOT_PATH/userfunctions/python
+#PYTHON_MODULE_PATH     = ROOT_PATH/userfunctions/python
 #-----------------------------------------------------------
 DATA_PATH              = ROOT_PATH/data/
 FILE_UPDATE_PATH       = ROOT_PATH/data/
