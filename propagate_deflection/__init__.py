@@ -3,7 +3,7 @@ import os
 import math
 
 def propagate_deflection(spk, naif_id, epoch, v1=None, v2=None, v3=None, magnitude=None, ra=None, dec=None):
-    print(os.path.abspath(os.path.curdir)+"\propagate_deflection\\api_startup_file.txt")
+    # print(os.path.abspath(os.path.curdir)+"\propagate_deflection\\api_startup_file.txt")
     gmat.Setup(os.path.abspath(os.path.curdir)+"\propagate_deflection\\api_startup_file.txt")
     gmat.LoadScript(os.path.abspath(os.path.curdir)+"\propagate_deflection\propagate_deflection.script")
 
