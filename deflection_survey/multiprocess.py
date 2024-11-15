@@ -47,7 +47,7 @@ def pool_func(ra, dec, epoch, asteroid):
     #     max_deflection = data['EarthAltitude']
 
     # TDB_Gregorian, TDB_MJD, Magnitude, RA, DEC, RMAG, Altitude
-    csv_row = "\n"+epoch+","+str(data['TDB_MJD'])+","+str(magnitude)+","+str(ra)+","+str(dec)+","+str(data['EarthRMAG'])+","+str(data['EarthAltitude'])
+    csv_row = "\n"+epoch+","+str(data['TDB_MJD'])+","+str(magnitude)+","+str(ra)+","+str(dec)+","+str(data['PosX_SunICRF'])+","+str(data['PosY_SunICRF'])+","+str(data['PosZ_SunICRF'])+","+str(data['EarthRMAG'])+","+str(data['EarthAltitude'])
 
     f = open(deflections_file, "a")
     f.write(csv_row) # Append sim results

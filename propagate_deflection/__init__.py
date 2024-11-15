@@ -39,6 +39,10 @@ def propagate_deflection(spk, naif_id, epoch, v1=None, v2=None, v3=None, magnitu
     EarthAltitude = gmat.GetRuntimeObject("EarthAltitude")
     # print("EarthAltitude", EarthAltitude.GetRealParameter("Value"), "km")
 
+    PosX_SunICRF = gmat.GetRuntimeObject("PosX_SunICRF")
+    PosY_SunICRF = gmat.GetRuntimeObject("PosY_SunICRF")
+    PosZ_SunICRF = gmat.GetRuntimeObject("PosZ_SunICRF")
+
     ElapsedSecs = gmat.GetRuntimeObject("ElapsedSecs")
     # print("Elapsed", ElapsedSecs.GetRealParameter("Value")/60/60/24/365, "years")
 
@@ -47,6 +51,9 @@ def propagate_deflection(spk, naif_id, epoch, v1=None, v2=None, v3=None, magnitu
     return {
         "EarthRMAG": EarthRMAG.GetRealParameter("Value"),
         "EarthAltitude": EarthAltitude.GetRealParameter("Value"),
+        "PosX_SunICRF": PosX_SunICRF.GetRealParameter("Value"),
+        "PosY_SunICRF": PosY_SunICRF.GetRealParameter("Value"),
+        "PosZ_SunICRF": PosZ_SunICRF.GetRealParameter("Value"),
         "ElapsedSecs": ElapsedSecs.GetRealParameter("Value"),
         "TDB_MJD": timeConverter.ConvertGregorianToMjd(epoch)
     }

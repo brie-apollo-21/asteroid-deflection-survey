@@ -39,7 +39,7 @@ if __name__ == '__main__':
         deflections_file = "./output/"+asteroid['name']+"_deflection.csv"
         if reset_csv_flag.lower() == "y" or len(reset_csv_flag) == 0:
             f = open(deflections_file, "w")
-            f.write("TDB_Gregorian,TDB_MJD,Magnitude,RA,DEC,Earth_RMAG,Earth_Altitude")
+            f.write("TDB_Gregorian,TDB_MJD,Magnitude,RA,DEC,X,Y,Z,Earth_RMAG,Earth_Altitude")
             f.close()
 
     if multiprocessing_flag.lower() == "y" or len(multiprocessing_flag) == 0:

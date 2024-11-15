@@ -187,9 +187,12 @@ GMAT AsteroidFixed.Axes = BodyFixed;
 %----------------------------------------
 %---------- Arrays, Variables, Strings
 %----------------------------------------
-Create Variable EarthRMAG EarthAltitude ElapsedSecs;
+Create Variable EarthRMAG EarthAltitude ElapsedSecs PosX_SunICRF PosY_SunICRF PosZ_SunICRF;
 GMAT EarthRMAG = -1;
 GMAT EarthAltitude = -1;
+GMAT PosX_SunICRF = 0;
+GMAT PosY_SunICRF = 0;
+GMAT PosZ_SunICRF = 0;
 GMAT ElapsedSecs = 0;
 
 
@@ -209,15 +212,15 @@ GMAT ElapsedSecs = 0;
 %----------------------------------------
 
 BeginMissionSequence;
-PenUp 'GroundPlotPenUp' DefaultGroundTrackPlot;
 Propagate 'LoadEphem' spkProp(Asteroid) {Asteroid.ElapsedSecs = 0};
+GMAT 'SetPosX' PosX_SunICRF = Asteroid.SunICRF.X;
+GMAT 'SetPosY' PosY_SunICRF = Asteroid.SunICRF.Y;
+GMAT 'SetPosZ' PosZ_SunICRF = Asteroid.SunICRF.Z;
 Maneuver 'Deflection' Deflection(Asteroid);
 If 'StartDeepSpace' Asteroid.Earth.RMAG > 924000
    Propagate 'DeepSpaceProp' DeepSpaceProp(Asteroid) {Asteroid.Earth.RMAG = 924000};
-   PenDown 'GroundPlotPenDown' DefaultGroundTrackPlot;
    Propagate 'Impact/Peri_Prop' EarthProp(Asteroid) {Asteroid.Earth.Altitude = 0.0, Asteroid.Earth.Periapsis};
 Else
-   PenDown 'GroundPlotPenDown' DefaultGroundTrackPlot;
    Propagate 'Impact/Peri_Prop' EarthProp(Asteroid) {Asteroid.Earth.Altitude = 0.0, Asteroid.Earth.Periapsis};
 EndIf;
 GMAT 'SetEarthRMAG' EarthRMAG = Asteroid.Earth.RMAG;
