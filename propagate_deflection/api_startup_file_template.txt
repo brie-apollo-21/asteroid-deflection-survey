@@ -142,7 +142,7 @@ EARTH_POT_PATH         = DATA_PATH/gravity/earth/
 LUNA_POT_PATH          = DATA_PATH/gravity/luna/
 MARS_POT_PATH          = DATA_PATH/gravity/mars/
 VENUS_POT_PATH         = DATA_PATH/gravity/venus/
-OTHER_POT_PATH         = DATA_PATH/gravity/other/
+#OTHER_POT_PATH         = DATA_PATH/gravity/other/
 #-----------------------------------------------------------
 EGM96_FILE             = EARTH_POT_PATH/EGM96.cof
 JGM2_FILE              = EARTH_POT_PATH/JGM2.cof
