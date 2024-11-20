@@ -16,12 +16,10 @@ if __name__ == '__main__':
     angle_resolution = input("Angle resolution (default of 5°): ")
     epoch_resolution = input("Epoch resolution (default of 7 days): ")
     magnitude = input("Deflection magnitude (default of 1.8e-05 km/s): ")
-    reset_csv_flag = input("Clear current data files? (Y/n) ")
-    multiprocessing_flag = input("Use multiprocessing? (Y/n) ")
 
     settings = {
-        'angle_resolution': float(angle_resolution) if len(angle_resolution) > 0 else 5,
-        'epoch_resolution': float(epoch_resolution) if len(epoch_resolution) > 0 else 7,
+        'angle_resolution': int(angle_resolution) if len(angle_resolution) > 0 else 5,
+        'epoch_resolution': int(epoch_resolution) if len(epoch_resolution) > 0 else 7,
         'magnitude': float(magnitude) if len(magnitude) > 0 else 1.8*math.pow(10, -5)
     }
 
@@ -31,6 +29,10 @@ if __name__ == '__main__':
 
     asteroids_file = open("asteroids.json", "r")
     asteroids = json.load(asteroids_file)
+    asteroids_file.close()
+
+    reset_csv_flag = input("Clear current data files? (Y/n) ")
+    multiprocessing_flag = input("Use multiprocessing? (Y/n) ")
 
     for asteroid in asteroids:
         # Reset CSV
